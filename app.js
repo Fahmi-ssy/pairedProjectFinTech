@@ -1,7 +1,8 @@
+// app.js
 const express = require('express');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { sequelize } = require('./models'); // Import your Sequelize instance
+const { sequelize } = require('./models');
 const app = express();
 const port = 3000;
 
@@ -21,7 +22,7 @@ app.use(session({
 
 // Middleware to pass the user session to all views
 app.use((req, res, next) => {
-  res.locals.user = req.session.user || null;
+  res.locals.user = req.session.user || null; // Make user available in views
   next();
 });
 

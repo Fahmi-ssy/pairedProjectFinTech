@@ -5,7 +5,7 @@ class InvestmentController {
   static async createInvestmentForm(req, res) {
     try {
       const companies = await Company.findAll();
-      res.render('investment/create-investment', { companies });
+      res.render('create-investment', { companies });
     } catch (error) {
       res.send(error)
     }

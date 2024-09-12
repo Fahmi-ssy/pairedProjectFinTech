@@ -1,14 +1,39 @@
+// routers/index.js
 const express = require('express');
 const router = express.Router();
 const InvestmentController = require('../controllers/investmentController');
 const UserController = require('../controllers/userController');
-const ensureAuthenticated = require('../middleware/auth');
+const { ensureAuthenticated } = require('../middlewares/auth'); // Import the helper
 const Controller = require('../controllers/controller');
 
-// Home route
-router.get('/', Controller.home);
+// Home route (accessible without login)
+const { Company } = require('../models');
 
-// Investment routes
+router.get('/', async (req, res) => {
+    try {
+        if (req.session.user) {
+            const companies = await Company.findAll();
+            res.render('home', {
+                user: req.session.user,
+                companies: companies
+            });
+        } else {
+            res.render('home', { user: null, companies: [] });
+        }
+      const companies = await Company.findAll();
+      res.render('home', { 
+        user: req.user || null,
+        companies: companies
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while fetching companies');
+    }
+  });
+
+ 
+
+// Investment routes (only accessible if logged in)
 router.get('/investments/new', ensureAuthenticated, InvestmentController.createInvestmentForm);
 router.post('/investments', ensureAuthenticated, InvestmentController.postCreateInvestment);
 
@@ -17,6 +42,6 @@ router.get('/login', UserController.loginForm);
 router.post('/login', UserController.postLogin);
 router.get('/register', UserController.registerForm);
 router.post('/register', UserController.postRegisterForm);
-router.get('/logout', ensureAuthenticated, UserController.logout); // Ensure only logged-in users can log out
+router.get('/logout', UserController.logout);
 
 module.exports = router;
