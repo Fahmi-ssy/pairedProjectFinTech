@@ -21,7 +21,7 @@ module.exports = {
       role: {
         type: Sequelize.STRING
       },
-      profileId: {
+      ProfileId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

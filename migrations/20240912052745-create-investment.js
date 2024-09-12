@@ -18,6 +18,12 @@ module.exports = {
       amount: {
         type: Sequelize.DECIMAL
       },
+      UserId: {
+        type: Sequelize.INTEGER
+      },
+      CompanyId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -9,10 +9,11 @@ npx sequelize-cli model:generate --name InvesmentType --attributes Currency:inte
 add column invesmentTypeId:integer <<<<<< companyId:integer,userId:integer <<<<<<<<<
 
 
-npx sequelize-cli model:generate --name Profile --attributes address:text,phone:string,userId:integer
-npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role:string,profileId:integer
-npx sequelize-cli model:generate --name Investment --attributes name:string,description:text,amount:decimal
-npx sequelize-cli model:generate --name Company --attributes name:string,companyLogo:string,email:string,description:text
+npx sequelize-cli model:generate --name Profile --attributes address:text,phone:string 
+npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role:string,ProfileId:integer 
+npx sequelize-cli model:generate --name Investment --attributes name:string,description:text,amount:decimal,UserId:integer,CompanyId:integer 
+npx sequelize-cli model:generate --name Company --attributes name:string,companyLogo:string,email:string,description:text 
 npx sequelize-cli model:generate --name InvestmentType --attributes currency:string
 
+npx sequelize-cli migration:generate --name add-column-AuthorId
 
