@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
     ProfileId: DataTypes.INTEGER
   }, {
+    hooks:{
+        beforeCreate(instance, options){
+            instance.password = "secure"
+        }
+    },
     sequelize,
     modelName: 'User',
   });
