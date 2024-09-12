@@ -1,4 +1,18 @@
-npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
-npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
-npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
-npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
+npx sequelize-cli model:generate --name Profile --attributes address:text,phone:integer,userId:integer
+npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role:varchar,profileId:integer
+npx sequelize-cli model:generate --name Invesment --attributes name:string,description:text,amount:number,
+npx sequelize-cli model:generate --name Company --attributes name:string,companyLogo:string,email:string,description:string
+npx sequelize-cli model:generate --name InvesmentType --attributes Currency:integer
+
+
+
+add column invesmentTypeId:integer <<<<<< companyId:integer,userId:integer <<<<<<<<<
+
+
+npx sequelize-cli model:generate --name Profile --attributes address:text,phone:string,userId:integer
+npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role:string,profileId:integer
+npx sequelize-cli model:generate --name Investment --attributes name:string,description:text,amount:decimal
+npx sequelize-cli model:generate --name Company --attributes name:string,companyLogo:string,email:string,description:text
+npx sequelize-cli model:generate --name InvestmentType --attributes currency:string
+
+
