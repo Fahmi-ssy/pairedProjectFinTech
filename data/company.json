@@ -1,0 +1,33 @@
+[
+    {
+      "name": "Techify Solutions",
+      "companyLogo": "https://randomurl.com/logo1.png",
+      "email": "contact@techifysolutions.com",
+      "description": "Innovative solutions for modern businesses. We specialize in cutting-edge technology services."
+    },
+    {
+      "name": "Eco Green Energy",
+      "companyLogo": "https://randomurl.com/logo2.png",
+      "email": "info@ecogreenenergy.com",
+      "description": "Leading provider of renewable energy solutions to create a more sustainable future."
+    },
+    {
+      "name": "HealthWise Inc.",
+      "companyLogo": "https://randomurl.com/logo3.png",
+      "email": "support@healthwise.com",
+      "description": "Healthcare services and products that focus on improving people's lives."
+    },
+    {
+      "name": "BrightSky Media",
+      "companyLogo": "https://randomurl.com/logo4.png",
+      "email": "hello@brightskymedia.com",
+      "description": "A creative digital agency offering branding, web development, and marketing solutions."
+    },
+    {
+      "name": "SecureNet Technologies",
+      "companyLogo": "https://randomurl.com/logo5.png",
+      "email": "sales@securenettech.com",
+      "description": "Providing top-notch cybersecurity solutions for enterprises and individuals."
+    }
+  ]
+  
