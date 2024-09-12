@@ -15,5 +15,5 @@ npx sequelize-cli model:generate --name Investment --attributes name:string,desc
 npx sequelize-cli model:generate --name Company --attributes name:string,companyLogo:string,email:string,description:text 
 npx sequelize-cli model:generate --name InvestmentType --attributes currency:string
 
-npx sequelize-cli migration:generate --name add-column-AuthorId
+npx sequelize-cli migration:generate --name add-column-InvestmentType
 
