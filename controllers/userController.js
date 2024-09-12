@@ -1,50 +1,61 @@
+const { User } = require('../models');
+const bcrypt = require('bcryptjs');
 
-const  { User } = require('../models')
+class userController {
 
-const bcrypt = require('bcryptjs')
+  static loginForm(req, res) {
+    const { error } = req.query;
+    res.render('auth-page/login-form', { error });
+  }
 
-class userController{
+  static registerForm(req, res) {
+    res.render('auth-page/register-form');
+  }
 
-    static loginForm(req,res){
-        const { error } = req.query
-        res.render('auth-page/login-Form', { error })
+  static async postRegisterForm(req, res) {
+    const { name, email, password, role } = req.body;
+  
+    try {
+      await User.create({ name, email, password, role });
+      res.redirect('/login');
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        const errors = error.errors.map(err => ({ msg: err.message }));
+        res.render('auth-page/register-form', {
+          errors,
+          oldValues: { name, email, role }
+        });
+      } else {
+        res.send(error);
+      }
     }
+  }
+  
+  
 
-    static registerForm(req,res){
-        res.render('auth-page/register-form')
+  static async postLogin(req, res) {
+    const { name, password } = req.body;
+
+    try {
+      const user = await User.findOne({ where: { name } });
+
+      if (user) {
+        const isValidPassword = bcrypt.compareSync(password, user.password);
+        if (isValidPassword) {
+          return res.redirect('/');
+        } else {
+          const error = 'Invalid password';
+          return res.redirect(`/login?error=${error}`);
+        }
+      } else {
+        const error = 'User not found';
+        return res.redirect(`/login?error=${error}`);
+      }
+    } catch (err) {
+      res.send(err);
     }
-
-    static postRegisterForm(req,res){
-
-        const { name, password, role } = req.body
-        User.create({name, password, role})
-        .then(newUser =>{
-            res.redirect('/login')
-        })
-        .catch(err => res.send(err))
-    }
-    static postLogin(req,res){
-        const { name , password } = req.body
-        User.findOne({where: { name }})
-        .then( user =>{
-            if (user) {
-                const isValidPassword = bcrypt.compareSync(password, user.password)
-                if (isValidPassword) {
-                    return res.redirect('/')
-                }else{
-                    const error = 'invalid password'
-                    return res.redirect(`/login?error=${error}`)
-                }
-            }else{
-                const error = 'invalid password'
-                return res.redirect(`/login?error=${error}`)
-            }
-
-        })
-        .catch(err => res.send(err))
-
-    }
+  }
 
 }
-module.exports= userController
 
+module.exports = userController;
