@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Investment.belongsTo(models.company)
+      Investment.belongsTo(models.user)
+      Investment.hasMany(models.investmenttype, {foreignKey: "InvestmentTypeId"})
     }
   }
   Investment.init({
@@ -18,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     amount: DataTypes.DECIMAL,
     UserId: DataTypes.INTEGER,
-    CompanyId: DataTypes.INTEGER
+    CompanyId: DataTypes.INTEGER,
+    InvestmentTypeId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Investment',
