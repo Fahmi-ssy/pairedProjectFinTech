@@ -1,0 +1,4 @@
+npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
+npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
+npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
+npx sequelize-cli model:generate --name <nama_class> --attributes <column:dataType,column:dataType>
