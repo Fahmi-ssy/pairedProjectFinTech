@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2 class="mt-5">Register</h2>
+
+    <!-- Display validation errors if any -->
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <div class="alert alert-danger">
+        <% errors.forEach(function(error) { %>
+          <p><%= error.msg %></p>
+        <% }); %>
+      </div>
+    <% } %>
+
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="name">Username:</label>
+        <input type="text" class="form-control" id="name" name="name" required minlength="3" maxlength="50" 
+               value="<%= (typeof oldValues !== 'undefined' && oldValues.name) ? oldValues.name : '' %>">
+        <small class="form-text text-muted">Username must be between 3 and 50 characters long.</small>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required 
+               value="<%= (typeof oldValues !== 'undefined' && oldValues.email) ? oldValues.email : '' %>">
+        <small class="form-text text-muted">Must be a valid email address.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required minlength="6">
+        <small class="form-text text-muted">Password must be at least 6 characters long.</small>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select class="form-control" id="role" name="role" required>
+          <option value="" disabled selected>Select your role</option>
+          <option value="user" <% if (typeof oldValues !== 'undefined' && oldValues.role === 'user') { %> selected <% } %>>User</option>
+          <option value="admin" <% if (typeof oldValues !== 'undefined' && oldValues.role === 'admin') { %> selected <% } %>>Admin</option>
+        </select>
+        <small class="form-text text-muted">Please select a role.</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p class="mt-3">Already have an account? <a href="/login">Login here</a>.</p>
+  </div>
+</body>
+</html>
