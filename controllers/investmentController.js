@@ -21,7 +21,7 @@ class InvestmentController {
                 amount,
                 CompanyId,
                 InvestmentTypeId,
-                UserId: req.session.userId // Assuming the user is logged in and the session has userId
+                UserId: req.session.user.userId // Assuming the user is logged in and the session has userId
             });
 
             res.redirect('/'); // Redirect to the homepage after creating the investment

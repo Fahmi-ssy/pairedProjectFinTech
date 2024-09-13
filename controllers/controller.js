@@ -1,4 +1,5 @@
 const { Company, User, Investment, InvestmentType } = require('../models');
+const investmenttype = require('../models/investmenttype');
 
 class Controller {
     static async home(req, res) {
@@ -23,7 +24,7 @@ class Controller {
             
             res.render('home', { 
                 companies, 
-                investments,  
+                investments, 
                 user: user ? {
                     id: user.id,
                     name: user.name,
