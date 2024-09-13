@@ -33,6 +33,10 @@ router.get('/', async (req, res) => {
 // Investment routes (only accessible if logged in)
 router.get('/investments/new', ensureAuthenticated, InvestmentController.createInvestmentForm);
 router.post('/investments', ensureAuthenticated, InvestmentController.postCreateInvestment);
+router.get('/investments/:id/edit', ensureAuthenticated, InvestmentController.editInvestmentForm);
+
+router.post('/investments/:id', ensureAuthenticated, InvestmentController.postEditInvestment);
+router.post('/investments/delete/:id', ensureAuthenticated, InvestmentController.deleteInvestment);
 
 
 // User routes

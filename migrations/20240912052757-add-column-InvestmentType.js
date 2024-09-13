@@ -9,12 +9,15 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('Investments', 'InvestmentTypeId',
-      { type: Sequelize.INTEGER,
-        references:{
-          model:"InvestmentTypes",
-          key:"id"
-        } });
+    await queryInterface.addColumn('Investments', 'InvestmentTypeId', {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'InvestmentTypes',
+        key: 'id',
+      },
+      onDelete: 'CASCADE', // Ensure related investments are deleted if an InvestmentType is deleted
+      onUpdate: 'CASCADE'
+    });
   },
 
   async down(queryInterface, Sequelize) {

@@ -15,9 +15,9 @@ const sessionStore = new SequelizeStore({
 app.use(session({
   secret: 'your-secret-key', // Replace with a strong secret key
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: sessionStore,
-  cookie: { secure: false } // Set secure to true if using HTTPS
+  cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
 // Middleware to pass the user session to all views

@@ -13,6 +13,7 @@ module.exports = {
      * }], {});
     */
     const data = require('../data/company.json').map(elemen =>{
+      delete elemen.id;
       elemen.createdAt = elemen.updatedAt = new Date()
 
       return elemen
@@ -28,5 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Companies', null, {})
   }
 };

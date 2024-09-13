@@ -56,6 +56,7 @@ class UserController {
                     }
                     res.redirect('/');
                 });
+                req.session.userId = user.id;
             } else {
                 const error = 'Invalid password';
                 res.redirect(`/login?error=${error}`);

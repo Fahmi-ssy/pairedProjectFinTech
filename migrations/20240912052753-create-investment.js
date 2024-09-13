@@ -20,10 +20,8 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER,
-        references:{
-          model:"Users",
-          key:"id"
-        }
+        references: { model: 'Users', key: 'id' }, // FK to Users table
+        onDelete: 'CASCADE'
       },
       CompanyId: {
         type: Sequelize.INTEGER,
