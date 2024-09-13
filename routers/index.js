@@ -5,6 +5,7 @@ const InvestmentController = require('../controllers/investmentController');
 const UserController = require('../controllers/userController');
 const { ensureAuthenticated } = require('../middlewares/auth'); // Import the helper
 const Controller = require('../controllers/controller');
+const ProfileController = require('../controllers/profileController');
 
 // Home route (accessible without login)
 const { Company, Investment } = require('../models');
@@ -31,6 +32,8 @@ router.get('/', async (req, res) => {
  
 
 // Investment routes (only accessible if logged in)
+router.get('/profile/update', ensureAuthenticated, ProfileController.updateProfileForm);
+router.post('/profile/update', ensureAuthenticated, ProfileController.postUpdateProfile);
 router.get('/investments/new', ensureAuthenticated, InvestmentController.createInvestmentForm);
 router.post('/investments', ensureAuthenticated, InvestmentController.postCreateInvestment);
 router.get('/investments/:id/edit', ensureAuthenticated, InvestmentController.editInvestmentForm);
