@@ -4,11 +4,17 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class InvestmentType extends Model {
     static associate(models) {
-      InvestmentType.belongsTo(models.Investment)
+      InvestmentType.hasMany(models.Investment, { foreignKey: "InvestmentTypeId" });
     }
   }
   InvestmentType.init({
-    currency: DataTypes.STRING
+    currency: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'InvestmentType',
