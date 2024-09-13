@@ -12,14 +12,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   const data = require('../data/investmentTypes.json').map(elemen =>{
+    const data = require('../data/company.json').map(elemen =>{
       elemen.createdAt = elemen.updatedAt = new Date()
 
       return elemen
    })
 
-   await queryInterface.bulkInsert('InvestmentTypes', data, {})
-   
+   await queryInterface.bulkInsert('Companies', data, {})
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,6 +28,5 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('InvestmentTypes', null, {})
   }
 };
